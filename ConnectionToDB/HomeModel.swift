@@ -15,7 +15,7 @@ protocol HomeModelDelegate {
 
 class HomeModel : NSObject{
     
-    var delegate:HomeModelDelegate?
+    var delegate : HomeModelDelegate?
     
     func getItems(){
         
@@ -23,11 +23,11 @@ class HomeModel : NSObject{
         
         let url = URL(string: serviceUrl);
         
-        if let url = url {
+        if let notNullUrl = url {
             
             let session = URLSession(configuration: .default);
             
-            let task = session.dataTask(with: url) { (data, responce, error) in
+            let task = session.dataTask(with: notNullUrl) { (data, responce, error) in
                 if error == nil {
                     //Suckseed
                     self.parseJson(data!);
@@ -42,17 +42,17 @@ class HomeModel : NSObject{
         }
     }
     
-    func parseJson(_ data:Data){
+    func parseJson(_ data : Data){
         
         var customerArray = [Customer]();
         
         do {
             
-            let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as! [Any];
+            let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as! [Any]
             
             for jsonResult in jsonArray {
                 
-                let jsonDict = jsonResult as! [String:String];
+                let jsonDict = jsonResult as! [String : String];
                 
                 let customer = Customer(name: jsonDict["Name"]!, age: jsonDict["Age"]!, height: jsonDict["Height"]!, weight: jsonDict["Weight"]!);
                 

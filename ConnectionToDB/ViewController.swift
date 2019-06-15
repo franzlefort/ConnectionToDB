@@ -10,15 +10,16 @@ import UIKit
 
 class ViewController: UIViewController, HomeModelDelegate, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var tv: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    
     var homeModel = HomeModel();
     var customers = [Customer]();
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tv.delegate = self;
-        tv.dataSource = self;
+        tableView.delegate = self;
+        tableView.dataSource = self;
         
         // Do any additional setup after loading the view.
         homeModel.getItems();
@@ -29,7 +30,7 @@ class ViewController: UIViewController, HomeModelDelegate, UITableViewDataSource
         
         self.customers = customers
         
-        tv.reloadData();
+        tableView.reloadData();
     }
     
     // MARK: - UITableView Delegate Methods
@@ -40,7 +41,7 @@ class ViewController: UIViewController, HomeModelDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tv.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath);
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath);
         
         cell.textLabel?.text = customers[indexPath.row].name;
         
