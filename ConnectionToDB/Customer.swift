@@ -9,11 +9,8 @@
 import Foundation
 struct Customer
 {
-    var name = "";
-    var age = "";
-    var height = "";
-    var weight = "";
-    
-    
-    
+    var name = String();
+    var age = String();
+    var height = String();
+    var weight = String();
 }
